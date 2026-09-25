@@ -58,6 +58,19 @@ export const projects: Project[] = [
     liveUrl: "https://masteryabroad.in/",
   },
   {
+    id: "04",
+    title: "Lotus Agro",
+    description:
+      "Dynamic landscaping and gardening platform for showcasing plants, gardening products, and landscaping services. Built with a fully customizable admin panel that enables end-to-end management of website content, products, categories, services, images, and other sections without requiring code changes.",
+    image: "/projects/Lotusagro.png",
+    tech: [
+      "Next.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+    ],
+  },
+  {
     id: "05",
     title: "Ayil Electro Build",
     description:
