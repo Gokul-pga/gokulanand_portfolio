@@ -69,6 +69,7 @@ export const projects: Project[] = [
       "Node.js",
       "Express.js",
     ],
+liveUrl: "https://lotusagro.in/",
   },
   {
     id: "05",
