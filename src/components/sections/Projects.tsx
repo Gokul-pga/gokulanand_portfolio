@@ -11,7 +11,7 @@ import {
   useScroll,
 } from "framer-motion";
 import Image from "next/image";
-import { FiExternalLink, FiImage, FiBriefcase } from "react-icons/fi";
+import { FiExternalLink, FiImage, FiBriefcase, FiLayers } from "react-icons/fi";
 
 export interface Project {
   id: string;
@@ -19,12 +19,14 @@ export interface Project {
   description: string;
   role?: string;
   isFreelance?: boolean;
+  isConcept?: boolean;
   image?: string;
   tech: string[];
   liveUrl?: string;
 }
 
 export const projects: Project[] = [
+  // --- LIVE / PROFESSIONAL PROJECTS ---
   {
     id: "01",
     title: "Zero-In Admin Suite",
@@ -33,15 +35,8 @@ export const projects: Project[] = [
       "Built a real-time test management & analytics platform to automate test execution, detailed reporting, and validation, replacing manual tracking and improving operational efficiency. Developed secure OTP + TOTP 2FA, RBAC, and backend API integrations for configuration management and CRUD operations. Created responsive, reusable UI components and dashboards using React.js, Next.js, Material UI, and Tailwind CSS.",
     role: "Frontend Developer",
     isFreelance: false,
-    tech: [
-      "Next.js",
-      "Tailwind CSS",
-      "Spring Boot",
-      "REST API",
-      "Cron Jobs",
-    ],
+    tech: ["Next.js", "Tailwind CSS", "Spring Boot", "REST API", "Cron Jobs"],
   },
-
   {
     id: "02",
     title: "Light Store",
@@ -50,44 +45,27 @@ export const projects: Project[] = [
     role: "MERN Stack Developer",
     isFreelance: false,
     image: "/projects/LightStore.png",
-    tech: [
-      "Next.js",
-      "Tailwind CSS",
-      "Node.js",
-      "Email Integration",
-    ],
+    tech: ["Next.js", "Tailwind CSS", "Node.js", "Email Integration"],
     liveUrl: "https://www.skwoodenlights.com/Home",
   },
-
   {
     id: "03",
     title: "Lotus Agro",
     description:
       "Dynamic landscaping and gardening platform for showcasing plants, gardening products, and landscaping services. Built with a fully customizable admin panel that enables end-to-end management of website content, products, categories, services, images, and other sections without requiring code changes.",
     image: "/projects/Lotusagro.png",
-    tech: [
-      "Next.js",
-      "Tailwind CSS",
-      "Node.js",
-      "Express.js",
-    ],
+    tech: ["Next.js", "Tailwind CSS", "Node.js", "Express.js"],
     liveUrl: "https://lotusagro.in/",
   },
-
   {
     id: "04",
     title: "ElectroWheelz",
     description:
       "Modern electric scooter website designed to showcase electric mobility products with engaging product presentations, detailed specifications, features, and a responsive user experience. Built with a clean and modern interface to highlight the scooter lineup and provide customers with an intuitive product browsing experience.",
     image: "/projects/electrowheelz.png",
-    tech: [
-      "Next.js",
-      "Tailwind CSS",
-      "Material UI",
-    ],
+    tech: ["Next.js", "Tailwind CSS", "Material UI"],
     liveUrl: "https://electrowheelz.co.in/",
   },
-
   {
     id: "05",
     title: "Mastery Abroad",
@@ -95,15 +73,9 @@ export const projects: Project[] = [
       "Study abroad platform enabling students to explore countries, universities, and courses with immersive UI experiences, counseling forms, and lead management workflows.",
     isFreelance: false,
     image: "/projects/MasteryAbroad.png",
-    tech: [
-      "Next.js",
-      "Material UI",
-      "Framer Motion",
-      "Lead Generation",
-    ],
+    tech: ["Next.js", "Material UI", "Framer Motion", "Lead Generation"],
     liveUrl: "https://masteryabroad.in/",
   },
-
   {
     id: "06",
     title: "Ayil Electro Build",
@@ -111,15 +83,9 @@ export const projects: Project[] = [
       "Corporate business website with modern architecture-focused design, lead generation workflows, email integrations, optimized performance, and large-scale responsive UI implementation.",
     isFreelance: false,
     image: "/projects/AyilElectro.png",
-    tech: [
-      "Next.js",
-      "Tailwind CSS",
-      "Material UI",
-      "Email Integration",
-    ],
+    tech: ["Next.js", "Tailwind CSS", "Material UI", "Email Integration"],
     liveUrl: "https://ayilelectrobuild.com/",
   },
-
   {
     id: "07",
     title: "Loan Application System",
@@ -127,20 +93,44 @@ export const projects: Project[] = [
       "Complete loan onboarding ecosystem featuring React Native mobile applications, KYC verification, loan processing, real-time status tracking, audit logs, and administrative dashboards.",
     isFreelance: false,
     image: "/projects/LoanApp.png",
-    tech: [
-      "React Native",
-      "Spring Boot",
-      "REST API",
-      "KYC",
-      "Admin Dashboard",
-    ],
+    tech: ["React Native", "Spring Boot", "REST API", "KYC", "Admin Dashboard"],
     liveUrl: "https://shreemeenakshifinance.com/",
+  },
+
+  // --- SHOWCASE & DESIGN CONCEPTS ---
+  {
+    id: "08",
+    title: "Karate Academy Portal",
+    description:
+      "Dynamic martial arts and training academy web concept built with high-energy visuals, interactive class schedules, instructor profiles, and immersive animations using GSAP and Tailwind CSS.",
+    role: "UI/UX & Frontend Concept",
+    isConcept: true,
+    image: "/projects/karate.png",
+    tech: ["Next.js", "Tailwind CSS", "GSAP", "Material UI"],
+    liveUrl: "https://karate-xi.vercel.app/",
+  },
+  {
+    id: "09",
+    title: "Dental Clinic Experience",
+    description:
+      "Modern healthcare landing page and booking interface featuring fully scroll-smoothed interactive sections, patient testimonial carousels, service breakdowns, and clean aesthetic layouts.",
+    role: "UI/UX & Frontend Concept",
+    isConcept: true,
+    image: "/projects/dental.png",
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Smooth Scrolling"],
+    liveUrl: "https://dentalclinics-roan.vercel.app/",
   },
 ];
 
 export default function ProjectsListing() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<"live" | "concepts">("live");
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // Filter projects based on active tab
+  const filteredProjects = projects.filter((p) =>
+    activeTab === "live" ? !p.isConcept : p.isConcept,
+  );
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -149,43 +139,35 @@ export default function ProjectsListing() {
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const index = Math.min(
-      Math.floor(latest * projects.length),
-      projects.length - 1,
+      Math.floor(latest * filteredProjects.length),
+      filteredProjects.length - 1,
     );
-
     setActiveIndex(index);
   });
 
-  const activeProject = projects[activeIndex];
+  const activeProject = filteredProjects[activeIndex] || filteredProjects[0];
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
 
-  const smoothRotateX = useSpring(rotateX, {
-    stiffness: 180,
-    damping: 18,
-  });
-
-  const smoothRotateY = useSpring(rotateY, {
-    stiffness: 180,
-    damping: 18,
-  });
+  const smoothRotateX = useSpring(rotateX, { stiffness: 180, damping: 18 });
+  const smoothRotateY = useSpring(rotateY, { stiffness: 180, damping: 18 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
-    const rotateYValue = (x / rect.width - 0.5) * 18;
-    const rotateXValue = -(y / rect.height - 0.5) * 18;
-
-    rotateX.set(rotateXValue);
-    rotateY.set(rotateYValue);
+    rotateX.set(-(y / rect.height - 0.5) * 18);
+    rotateY.set((x / rect.width - 0.5) * 18);
   };
 
   const handleMouseLeave = () => {
     rotateX.set(0);
     rotateY.set(0);
+  };
+
+  const handleTabChange = (tab: "live" | "concepts") => {
+    setActiveTab(tab);
+    setActiveIndex(0);
   };
 
   return (
@@ -195,17 +177,40 @@ export default function ProjectsListing() {
         id="projects"
         className="bg-black py-20 px-4 flex flex-col lg:hidden"
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <p className="uppercase tracking-[0.3em] text-gray-500 mb-4">
             Featured Work
           </p>
-
-          <h2 className="text-4xl font-bold text-white mb-16">
+          <h2 className="text-4xl font-bold text-white mb-8">
             Selected Projects
           </h2>
 
+          {/* Category Tabs */}
+          <div className="flex gap-3 mb-12">
+            <button
+              onClick={() => handleTabChange("live")}
+              className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+                activeTab === "live"
+                  ? "bg-white text-black"
+                  : "bg-white/5 text-white/60 border border-white/10"
+              }`}
+            >
+              Live Products ({projects.filter((p) => !p.isConcept).length})
+            </button>
+            <button
+              onClick={() => handleTabChange("concepts")}
+              className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+                activeTab === "concepts"
+                  ? "bg-white text-black"
+                  : "bg-white/5 text-white/60 border border-white/10"
+              }`}
+            >
+              Showcase Concepts ({projects.filter((p) => p.isConcept).length})
+            </button>
+          </div>
+
           <div className="space-y-16">
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 80 }}
@@ -213,11 +218,15 @@ export default function ProjectsListing() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Image Wrapper */}
                 <div className="relative overflow-hidden rounded-2xl border border-white/10">
                   {project.isFreelance && (
                     <span className="absolute top-3 right-3 z-10 px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 backdrop-blur-md">
                       Freelance
+                    </span>
+                  )}
+                  {project.isConcept && (
+                    <span className="absolute top-3 right-3 z-10 px-3 py-1 text-xs font-semibold rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 backdrop-blur-md">
+                      Showcase Concept
                     </span>
                   )}
 
@@ -236,12 +245,10 @@ export default function ProjectsListing() {
                   )}
                 </div>
 
-                {/* Content */}
                 <div className="mt-6">
                   <div className="text-white/10 text-6xl font-black">
                     {project.id}
                   </div>
-
                   <h3 className="text-2xl font-bold text-white mt-2">
                     {project.title}
                   </h3>
@@ -274,12 +281,11 @@ export default function ProjectsListing() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-white hover:text-gray-300"
                       >
-                        Visit Site
-                        <FiExternalLink />
+                        Visit Site <FiExternalLink />
                       </a>
                     ) : (
                       <span className="text-white/40">
-                        Preview Not Available
+                        Design Showcase Concept
                       </span>
                     )}
                   </div>
@@ -297,16 +303,49 @@ export default function ProjectsListing() {
         className="hidden lg:block relative h-[400vh] bg-black"
       >
         <div className="sticky top-0 h-screen overflow-hidden">
-          <div className="max-w-7xl mx-auto h-full px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 h-full items-center">
-              {/* LEFT SIDE */}
-              <div className="order-2 lg:order-1 px-2 lg:px-0 mt-7">
-                <p className="uppercase tracking-[0.25em] lg:tracking-[0.4em] text-gray-500 mb-4 lg:mb-6 text-xs lg:text-base">
+          <div className="max-w-7xl mx-auto h-full px-6 flex flex-col justify-center">
+            {/* Top Header & Tabs */}
+            <div className="flex items-center justify-between mb-4 pt-8">
+              <div>
+                <p className="uppercase tracking-[0.4em] text-gray-500 mb-2 text-xs">
                   Featured Work
                 </p>
+                <h2 className="text-3xl font-bold text-white">
+                  Selected Projects
+                </h2>
+              </div>
 
-                <div className="flex gap-2 lg:gap-4 mb-6 lg:mb-12 overflow-x-auto">
-                  {projects.map((project, index) => (
+              {/* Category Switcher Tabs */}
+              <div className="flex gap-3 bg-white/5 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+                <button
+                  onClick={() => handleTabChange("live")}
+                  className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+                    activeTab === "live"
+                      ? "bg-white text-black shadow-lg"
+                      : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  Live Products ({projects.filter((p) => !p.isConcept).length})
+                </button>
+                <button
+                  onClick={() => handleTabChange("concepts")}
+                  className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+                    activeTab === "concepts"
+                      ? "bg-white text-black shadow-lg"
+                      : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  Showcase Concepts (
+                  {projects.filter((p) => p.isConcept).length})
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-[calc(100vh-140px)]">
+              {/* LEFT SIDE */}
+              <div className="order-2 lg:order-1 px-2 lg:px-0">
+                <div className="flex gap-2 lg:gap-4 mb-6 overflow-x-auto">
+                  {filteredProjects.map((project, index) => (
                     <button
                       key={project.id}
                       onClick={() => setActiveIndex(index)}
@@ -326,13 +365,13 @@ export default function ProjectsListing() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeProject.id}
-                    initial={{ opacity: 0, y: 80 }}
+                    initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -80 }}
-                    transition={{ duration: 0.6 }}
+                    exit={{ opacity: 0, y: -60 }}
+                    transition={{ duration: 0.5 }}
                   >
                     <div className="flex items-center justify-between">
-                      <div className="text-white/10 text-[120px] md:text-[180px] font-black leading-none">
+                      <div className="text-white/10 text-[100px] md:text-[140px] font-black leading-none">
                         {activeProject.id}
                       </div>
 
@@ -341,20 +380,25 @@ export default function ProjectsListing() {
                           Freelance Project
                         </span>
                       )}
+                      {activeProject.isConcept && (
+                        <span className="px-4 py-1.5 text-xs font-medium rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 backdrop-blur-md">
+                          Showcase Concept
+                        </span>
+                      )}
                     </div>
 
-                    <h2 className="text-4xl md:text-6xl font-bold text-white mb-2">
+                    <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                       {activeProject.title}
-                    </h2>
+                    </h3>
 
                     {activeProject.role && (
-                      <div className="inline-flex items-center gap-2 text-sm text-emerald-400 font-medium mb-6">
+                      <div className="inline-flex items-center gap-2 text-sm text-emerald-400 font-medium mb-4">
                         <FiBriefcase size={14} />
                         <span>Role: {activeProject.role}</span>
                       </div>
                     )}
 
-                    <p className="text-gray-400 text-lg leading-relaxed mb-8 max-w-xl">
+                    <p className="text-gray-400 text-base lg:text-lg leading-relaxed mb-6 max-w-xl">
                       {activeProject.description}
                     </p>
 
@@ -387,7 +431,7 @@ export default function ProjectsListing() {
                     initial={{ opacity: 0, scale: 0.92 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.08 }}
-                    transition={{ duration: 0.7 }}
+                    transition={{ duration: 0.6 }}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     style={{
@@ -403,18 +447,15 @@ export default function ProjectsListing() {
                         alt={activeProject.title}
                         width={1400}
                         height={900}
-                        className="w-full h-[300px] object-cover"
+                        className="w-full h-[280px] lg:h-[340px] object-cover"
                         priority
                       />
                     ) : (
-                      <div className="h-[300px] flex flex-col items-center justify-center bg-white/5 text-white/60">
+                      <div className="h-[340px] flex flex-col items-center justify-center bg-white/5 text-white/60">
                         <FiImage size={60} className="mb-4" />
                         <h3 className="text-lg font-medium">
                           No Preview Available
                         </h3>
-                        <p className="text-sm text-white/40 mt-2">
-                          Screenshot not uploaded yet
-                        </p>
                       </div>
                     )}
                   </motion.div>
@@ -428,11 +469,12 @@ export default function ProjectsListing() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-white hover:text-gray-300 transition-all duration-300"
                     >
-                      Visit Site
-                      <FiExternalLink size={18} />
+                      Visit Site <FiExternalLink size={18} />
                     </a>
                   ) : (
-                    <span className="text-white/40">Preview Not Available</span>
+                    <span className="text-white/40 text-sm">
+                      Interactive UI/UX & Animation Concept
+                    </span>
                   )}
                 </div>
               </div>
