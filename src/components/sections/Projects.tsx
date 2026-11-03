@@ -120,6 +120,17 @@ export const projects: Project[] = [
     tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Smooth Scrolling"],
     liveUrl: "https://dentalclinics-roan.vercel.app/",
   },
+  {
+  id: "10",
+  title: "CasaCare – Home Appliance Services",
+  description:
+    "Modern home appliance service website featuring premium landing page design, appliance repair service showcases, interactive service details, smooth scroll animations, and responsive layouts.",
+  role: "UI/UX & Frontend Development",
+  isConcept: true,
+  image: "/projects/casacare.png",
+  tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design"],
+  liveUrl: "https://home-appliance-gamma.vercel.app/",
+},
 ];
 
 export default function ProjectsListing() {
