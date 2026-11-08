@@ -37,7 +37,7 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const resumePath = "/resume/Gokulanand_Resume.pdf";
+  const resumePath = "/Gokulanand_Resume_3.pdf";
 
   return (
     <>
@@ -183,7 +183,7 @@ export default function Navbar() {
           {/* Mobile Resume Download Button */}
           <a
             href={resumePath}
-            download="Gokulanand_Resume.pdf"
+            download="Gokulanand_Resume_3.pdf"
             className="relative flex flex-col items-center justify-center flex-1 py-1 focus:outline-none text-gray-400 hover:text-white transition-colors duration-300"
           >
             <div className="relative z-10 flex flex-col items-center gap-1">
