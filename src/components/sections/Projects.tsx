@@ -98,17 +98,18 @@ export const projects: Project[] = [
   },
 
   // --- SHOWCASE & DESIGN CONCEPTS ---
-  {
-    id: "08",
-    title: "Karate Academy Portal",
-    description:
-      "Dynamic martial arts and training academy web concept built with high-energy visuals, interactive class schedules, instructor profiles, and immersive animations using GSAP and Tailwind CSS.",
-    role: "UI/UX & Frontend Concept",
-    isConcept: true,
-    image: "/projects/karate.png",
-    tech: ["Next.js", "Tailwind CSS", "GSAP", "Material UI"],
-    liveUrl: "https://karate-xi.vercel.app/",
-  },
+{
+  id: "08",
+  title: "CasaCare – Home Appliance Services",
+  description:
+    "Modern home appliance service website featuring premium landing page design, appliance repair service showcases, interactive service details, smooth scroll animations, and responsive layouts.",
+  role: "UI/UX & Frontend Development",
+  isConcept: true,
+  image: "/projects/casacare.png",
+  tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design"],
+  liveUrl: "https://home-appliance-gamma.vercel.app/",
+},
+  
   {
     id: "09",
     title: "Dental Clinic Experience",
@@ -121,16 +122,16 @@ export const projects: Project[] = [
     liveUrl: "https://dentalclinics-roan.vercel.app/",
   },
   {
-  id: "10",
-  title: "CasaCare – Home Appliance Services",
-  description:
-    "Modern home appliance service website featuring premium landing page design, appliance repair service showcases, interactive service details, smooth scroll animations, and responsive layouts.",
-  role: "UI/UX & Frontend Development",
-  isConcept: true,
-  image: "/projects/casacare.png",
-  tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design"],
-  liveUrl: "https://home-appliance-gamma.vercel.app/",
-},
+    id: "10",
+    title: "Karate Academy Portal",
+    description:
+      "Dynamic martial arts and training academy web concept built with high-energy visuals, interactive class schedules, instructor profiles, and immersive animations using GSAP and Tailwind CSS.",
+    role: "UI/UX & Frontend Concept",
+    isConcept: true,
+    image: "/projects/karate.png",
+    tech: ["Next.js", "Tailwind CSS", "GSAP", "Material UI"],
+    liveUrl: "https://karate-xi.vercel.app/",
+  },
 ];
 
 export default function ProjectsListing() {
